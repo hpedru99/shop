@@ -3,9 +3,10 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
 
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url('', include('shop.urls', namespace='shop'))
+    url(r'^', include('shop.urls', namespace='shop')),
 ]
 
 if settings.DEBUG:
