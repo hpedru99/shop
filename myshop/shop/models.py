@@ -1,18 +1,13 @@
 from django.db import models
 from django.core.urlresolvers import reverse
-from parler.models import TranslatableModel, TranslatedFields
 
 
-class Category(TranslatableModel):
+class Category(models.Model):
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True, unique=True)
-    translations = TranslatedFields(
-        name=models.CharField(max_length=200, db_index=True),
-        slug=models.SlugField(max_length=200, db_index=True, unique=True)
-    )
 
     class Meta:
-        # ordering = ('name',)
+        ordering = ('name',)
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
 
@@ -23,15 +18,10 @@ class Category(TranslatableModel):
         return reverse('shop:product_list_by_category', args=[self.slug])
 
 
-class Product(TranslatableModel):
+class Product(models.Model):
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True)
     description = models.TextField(blank=True)
-    translations = TranslatedFields(
-        name=models.CharField(max_length=200, db_index=True),
-        slug=models.SlugField(max_length=200, db_index=True),
-        description=models.TextField(blank=True)
-    )
     category = models.ForeignKey(Category, related_name='products')
     image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -42,7 +32,7 @@ class Product(TranslatableModel):
 
     class Meta:
         ordering = ('name',)
-        # index_together = (('id', 'slug'),)
+        index_together = (('id', 'slug'),)
 
     def __str__(self):
         return self.name

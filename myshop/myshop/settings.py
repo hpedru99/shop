@@ -25,7 +25,6 @@ INSTALLED_APPS = (
     'orders',
     'coupons',
     'rosetta',
-    'parler'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -93,13 +92,3 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale/'),
 )
-PARLER_LANGUAGES = {
-    None: (
-        {'code': 'en'},
-        {'code': 'es'},
-    ),
-    'default': {
-        'fallback': 'en',
-        'hide_untranslated': False,
-    }
-}
