@@ -1,4 +1,6 @@
 import os
+from django.utils.translation import gettext_lazy as _
+
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -68,8 +70,8 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en'
 LANGUAGES = (
- ('en', 'English'),
- ('es', 'Spanish'),
+ ('en', _('English')),
+ ('es', _('Spanish')),
 )
 
 TIME_ZONE = 'UTC'
